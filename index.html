@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Silly Story Generator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Star Background */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(white 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: twinkle 10s linear infinite;
+      z-index: -1;
+      opacity: 0.2;
+    }
+
+    @keyframes twinkle {
+      from {
+        transform: translate(0, 0);
+      }
+      to {
+        transform: translate(-25px, -25px);
+      }
+    }
+
+    .container {
+      padding: 60px 20px;
+      text-align: center;
+      color: #5d1451;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #6a0572;
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      margin: 10px;
+      border: 2px solid #6a0572;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    input {
+      width: 200px;
+    }
+
+    button {
+      background-color: #6a0572;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #a029a0;
+    }
+
+    .story {
+      margin-top: 30px;
+      background-color: #fff0f6;
+      border: 2px dashed #ff4fa1;
+      padding: 20px;
+      max-width: 600px;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .character {
+      width: 200px;
+      margin: 20px auto;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ Silly Story Generator ✨</h1>
+    <input type="text" id="nameInput" placeholder="Enter your name..." />
+    <button onclick="generateStory()">Generate Story</button>
+
+
+
+    <div class="story" id="storyBox">Your story will appear here! 🦄</div>
+  </div>
+
+  <script>
+    const stories = [
+      "{name} once rode a unicorn to school and spilled glitter all over the classroom.",
+      "On a rainy Tuesday, {name} danced with a talking pineapple in the middle of the mall.",
+      "{name} was crowned king of Candyland after winning a donut-eating contest.",
+      "Aliens from Mars invited {name} over for spaghetti made of moon cheese.",
+      "During recess, {name} discovered a secret portal to a world made entirely of jellybeans.",
+      "When {name} sneezed, a hundred balloons flew out of their backpack.",
+      "One day, {name} woke up with spaghetti hair and had to comb it with a fork.",
+      "A chicken challenged {name} to a dance battle and lost terribly.",
+      "{name} found a talking banana that only spoke in rhymes.",
+      "At the zoo, a gorilla gave {name} fashion advice about socks."
+    ];
+
+    function generateStory() {
+      const name = document.getElementById("nameInput").value.trim() || "Someone";
+      const randomIndex = Math.floor(Math.random() * stories.length);
+      const storyText = stories[randomIndex].replace("{name}", name);
+      document.getElementById("storyBox").innerHTML = `📚 ${storyText}`;
+    }
+  </script>
+</body>
+</html>
